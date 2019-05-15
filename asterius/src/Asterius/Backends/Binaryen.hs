@@ -8,6 +8,7 @@ module Asterius.Backends.Binaryen
   ( MarshalError(..)
   , marshalModule
   , serializeModule
+  , serializeModuleSExpr
   ) where
 
 import Asterius.Internals
