@@ -555,3 +555,7 @@ serializeModule m =
         buf <- peek buf_p
         len <- peek len_p
         BS.unsafePackMallocCStringLen (castPtr buf, fromIntegral len)
+
+serializeModuleSExpr :: BinaryenModuleRef -> IO BS.ByteString
+serializeModuleSExpr m =
+  c_BinaryenModuleAllocateAndWriteSExpr m >>= BS.unsafePackCString
