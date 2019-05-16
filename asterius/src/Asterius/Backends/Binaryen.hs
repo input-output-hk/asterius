@@ -9,6 +9,8 @@ module Asterius.Backends.Binaryen
   , marshalModule
   , serializeModule
   , serializeModuleSExpr
+  , setColorsEnabled
+  , isColorsEnabled
   ) where
 
 import Asterius.Internals
@@ -560,3 +562,10 @@ serializeModule m =
 serializeModuleSExpr :: BinaryenModuleRef -> IO BS.ByteString
 serializeModuleSExpr m =
   c_BinaryenModuleAllocateAndWriteSExpr m >>= BS.unsafePackCString
+
+
+setColorsEnabled :: Bool -> IO ()
+setColorsEnabled b = c_BinaryenSetColorsEnabled . toEnum . fromEnum $ b
+
+isColorsEnabled :: IO Bool
+isColorsEnabled = toEnum . fromEnum <$> c_BinaryenIsColorsEnabled

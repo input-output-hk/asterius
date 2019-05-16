@@ -1809,3 +1809,11 @@ foreign import ccall unsafe "BinaryenGetFunctionTypeBySignature" c_BinaryenGetFu
   :: BinaryenModuleRef ->
   BinaryenType ->
     Ptr BinaryenType -> BinaryenIndex -> IO BinaryenFunctionTypeRef
+
+
+foreign import ccall unsafe "BinaryenSetColorsEnabled" c_BinaryenSetColorsEnabled
+  :: CInt -> IO ()
+
+
+foreign import ccall unsafe "BinaryenIsColorsEnabled" c_BinaryenIsColorsEnabled
+  :: IO CInt
