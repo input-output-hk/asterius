@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>JavaScript FFI - Asterius</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "JavaScript FFI";
+    var mkdocs_page_input_path = "jsffi.md";
+    var mkdocs_page_url = "/asterius/jsffi/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Asterius</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../building/">Building guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cabal/">Cabal support</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ahc-link/">Using ahc-dist/ahc-link</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">JavaScript FFI</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#javascript-ffi">JavaScript FFI</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#converting-between-haskell-and-javascript-types">Converting between Haskell and JavaScript types</a></li>
+        
+            <li><a class="toctree-l3" href="#whats-permitted-in-foreign-import-javascript">What's permitted in foreign import javascript</a></li>
+        
+            <li><a class="toctree-l3" href="#implementation">Implementation</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rts-api/">Invoking RTS API in JavaScript</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ir/">IR types and transformation passes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../debugging/">The runtime debugging feature</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../architecture/">Project architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-in-hs/">Writing WebAssembly code in Haskell</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../webassembly/">WebAssembly as a Haskell compilation target</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom-ghc/">About the custom GHC fork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-experimental/">Using experimental WebAssembly features</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../hacking/">Hacking guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../readings/">Reading list</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reports/">Status reports</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Asterius</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>JavaScript FFI</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/tweag/asterius/edit/master/docs/jsffi.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="javascript-ffi">JavaScript FFI</h1>
+<p>There is a prototype implementation of <code>foreign import javascript</code> right now, check the <code>jsffi</code>/<code>teletype</code> unit tests for details. The syntax is like:</p>
+<pre><code>import Asterius.Types
+
+foreign import javascript &quot;new Date()&quot; current_time :: IO JSVal
+
+foreign import javascript &quot;console.log(${1})&quot; js_print :: JSVal -&gt; IO ()
+</code></pre>
+
+<p>The source text of <code>foreign import javascript</code> should be a valid JavaScript expression. You can use <code>${n}</code> to refer to the nth function parameter starting from 1. By using the IIFE(Immediately Invoked Function Expression) design pattern, it's even possible to define local variables and write <code>for</code> loops.</p>
+<p>Supported basic types are:</p>
+<ul>
+<li><code>Ptr</code></li>
+<li><code>FunPtr</code></li>
+<li><code>StablePtr</code></li>
+<li><code>Bool</code></li>
+<li><code>Int</code></li>
+<li><code>Word</code></li>
+<li><code>Char</code></li>
+<li><code>Float</code></li>
+<li><code>Double</code></li>
+<li><code>JSVal</code>/<code>JSArrayBuffer</code>/<code>JSString</code>/<code>JSArray</code></li>
+</ul>
+<p>For the lifted basic types, the result can be wrapped in <code>IO</code> (or not). There's also limited support for unlifted FFI types:</p>
+<ul>
+<li><code>StablePtr# a</code></li>
+<li><code>Addr#</code></li>
+<li><code>ByteArray#</code></li>
+<li><code>MutableByteArray# s</code></li>
+<li><code>Char#</code></li>
+<li><code>Int#</code></li>
+<li><code>Word#</code></li>
+<li><code>Float#</code></li>
+<li><code>Double#</code></li>
+</ul>
+<p>These unlifted FFI types can be used in a <code>foreign import javascript</code> clause (but not <code>export</code>.) The results can't be wrapped in <code>IO</code>.</p>
+<p><code>JSVal</code> is defined in <code>Asterius.Types</code> in the patched <code>ghc-prim</code> package. In the Haskell land, <code>JSVal</code> is first-class and opaque: you can pass it around, put it in a data structure, etc, but under the hood it's just a handle. The runtime maintains mappings from handles to real JavaScript objects.</p>
+<p>Normally, the Haskell FFI mechanism permits defining <code>newtype</code>s to the marshallable basic types, and the wrapping/unwrapping is done automatically. However, this doesn't work yet due to the way we implement JSFFI right now. You <em>can</em> define a <code>newtype</code> to <code>JSVal</code>/<code>JSWhatever</code>, but in a <code>foreign import javascript</code>/<code>foreign export javascript</code> declaration, you still must use one of the builtin <code>JS*</code> types, and when using imported functions, you need to manually <code>coerce</code> them (<code>coerce</code> works when <code>Asterius.Types</code> is imported).</p>
+<p>Also, a prototype of <code>foreign export javascript</code> is implemented, check <code>jsffi</code> for details. The syntax is roughly:</p>
+<pre><code>foreign export javascript &quot;mult_hs&quot; (*) :: Int -&gt; Int -&gt; Int
+</code></pre>
+
+<p>In a Haskell module, one can specify the exported function name (must be globally unique), along with its Haskell identifier and type. One can specify <code>ahc-link --export-function=mult_hs</code> to make the linker include the relevant bits in final WebAssembly binary, and export <code>mult_hs</code> as a regular WebAssembly export function. After calling <code>hs_init</code> to initialize the runtime, one can call <code>mult_hs</code> just like a regular JavaScript function.</p>
+<h2 id="converting-between-haskell-and-javascript-types">Converting between Haskell and JavaScript types</h2>
+<p>The <code>Asterius.Types</code>/<code>Asterius.ByteString</code> modules provide some high-level functions for converting between Haskell and JavaScript types:</p>
+<pre><code>fromJSString :: JSString -&gt; [Char]
+toJSString :: [Char] -&gt; JSString
+
+fromJSArray :: JSArray -&gt; [JSVal]
+toJSArray :: [JSVal] -&gt; JSArray
+
+byteStringFromJSArrayBuffer :: JSArrayBuffer -&gt; ByteString
+byteStringToJSArrayBuffer :: ByteString -&gt; JSArrayBuffer
+</code></pre>
+
+<p>It's possible to define them just by using the basic JSFFI mechanism, but those functions are backed by special runtime interfaces which makes them a lot faster. Most notably, the <code>fromJS*</code> functions directly traverse the JavaScript value and build a fully-evaluated Haskell data structure on the heap in one pass.</p>
+<h2 id="whats-permitted-in-foreign-import-javascript">What's permitted in <code>foreign import javascript</code></h2>
+<p>In a <code>foreign import javascript</code> declaration, you can access all properties of the global object (<code>window</code> in browsers, <code>global</code> in node.js), so all functionalities of standard JavaScript is permitted.</p>
+<p>Additionally, the <code>__asterius_jsffi</code> object is in scope; it is initialized before instantiating the WebAssembly instance, and contains the runtime interfaces used to support the JSFFI features (e.g. manipulation of <code>JSVal</code>s). You may check <code>rts/rts.js</code> to see what <code>__asterius_jsffi</code> contains, but we don't recommend using it in your code since it's intended to be an implementation detail; shall you feel the need to access it, please file an issue instead and we'll add your missing functionality as proper Haskell/JavaScript interfaces instead.</p>
+<h2 id="implementation">Implementation</h2>
+<p>This subsection presents a high-level overview on the implementation of JSFFI, based on the information flow from syntactic sugar to generated WebAssembly/JavaScript code. It's not a required reading for <em>users</em> of the JSFFI feature.</p>
+<h3 id="syntactic-sugar">Syntactic sugar</h3>
+<p>As documented in previous sections, one can write <code>foreign import javascript</code> or <code>foreign export javascript</code> clauses in a <code>.hs</code> module. How are they processed? The logic resides in <code>Asterius.JSFFI</code>.</p>
+<p>First, there is <code>addFFIProcessor</code>, which given a <code>Compiler</code> (defined in <code>ghc-toolkit</code>), returns a new <code>Compiler</code> and a callback to fetch a stub module. The details of <code>Compiler</code>'s implementation are not relevant here, just think of it as an abstraction layer to fetch/modify GHC IRs without dealing with all the details of GHC API.</p>
+<p><code>addFFIProcessor</code> adds one functionality to the input <code>Compiler</code>: rewrite parsed Haskell AST and handle the <code>foreign import javascript</code>/<code>foreign export javascript</code> syntactic sugar. After rewriting, JavaScript FFI is really turned into C FFI, so type-checking/code generation proceeds as normal.</p>
+<p>After the parsed AST is processed, a "stub module" of type <code>AsteriusModule</code> is generated and can be later fetched given an <code>AsteriusModuleSymbol</code>. It contains JSFFI related information of type <code>FFIMarshalState</code>. Both <code>AsteriusModule</code> and <code>FFIMarshalState</code> types has <code>Semigroup</code> instance so they can be combined later at link-time.</p>
+<h3 id="todo">TODO</h3>
+<h3 id="adding-a-jsffi-basic-type">Adding a JSFFI basic type</h3>
+<p>Look at the following places:</p>
+<ul>
+<li><code>Asterius.JSFFI</code> module. All JavaScript reference types are uniformly handled as <code>FFI_JSVAL</code>, while value types are treated as <code>FFI_VAL</code>. Assuming we are adding a value type. Add logic to:<ul>
+<li><code>marshalToFFIValueType</code>: Recognize the value type in parsed AST, and translate to <code>FFI_VAL</code></li>
+</ul>
+</li>
+<li><code>Asterius.Builtins</code> module. Add the corresponding <code>rts_mkXX</code>/<code>rts_getXX</code> builtin functions. They are required for stub functions of <code>foreign export javascript</code>.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../rts-api/" class="btn btn-neutral float-right" title="Invoking RTS API in JavaScript">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ahc-link/" class="btn btn-neutral" title="Using ahc-dist/ahc-link"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/tweag/asterius/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../ahc-link/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../rts-api/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

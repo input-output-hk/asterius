@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Writing WebAssembly code in Haskell - Asterius</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Writing WebAssembly code in Haskell";
+    var mkdocs_page_input_path = "wasm-in-hs.md";
+    var mkdocs_page_url = "/asterius/wasm-in-hs/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Asterius</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../building/">Building guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cabal/">Cabal support</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ahc-link/">Using ahc-dist/ahc-link</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jsffi/">JavaScript FFI</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rts-api/">Invoking RTS API in JavaScript</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ir/">IR types and transformation passes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../debugging/">The runtime debugging feature</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../architecture/">Project architecture</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Writing WebAssembly code in Haskell</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#writing-webassembly-code-in-haskell">Writing WebAssembly code in Haskell</a></li>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../webassembly/">WebAssembly as a Haskell compilation target</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom-ghc/">About the custom GHC fork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-experimental/">Using experimental WebAssembly features</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../hacking/">Hacking guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../readings/">Reading list</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reports/">Status reports</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Asterius</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Writing WebAssembly code in Haskell</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/tweag/asterius/edit/master/docs/wasm-in-hs.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="writing-webassembly-code-in-haskell">Writing WebAssembly code in Haskell</h2>
+<p>In <code>Asterius.Builtins</code>, there are WebAssembly shims which serve as our runtime. We choose to write WebAssembly code in Haskell, using Haskell as our familiar meta-language.</p>
+<p>As of now, there are two ways of writing WebAssembly code in Haskell. The first way is directly manipulating AST types as specified in <code>Asterius.Types</code>. Those types are pretty bare-metal and maps closely to binaryen IR. Simply write some code to generate an <code>AsteriusFunction</code>, and ensure the function and its symbol is present in the store when linking starts. It will eventually be bundled into output WebAssembly binary file.</p>
+<p>Directly using <code>Asterius.Types</code> is not a pleasant experience, it's basically a DDoS on one's working memory, since the developer needs to keep a lot of things in mind: parameter/local ids, block/loop labels, etc. Also, the resulting Haskell code is pretty verbose, littered with syntactic noise (e.g. tons of list concats when constructing a block)</p>
+<p>We now provide an EDSL in <code>Asterius.EDSL</code> to construct an <code>AsteriusFunction</code>. Its core type is <code>EDSL a</code>, and can be composed with a <code>Monad</code> or <code>Monoid</code> interface. Most builtin functions in <code>Asterius.Builtins</code> are already refactored to use this EDSL. Typical usages:</p>
+<ul>
+<li>"Allocate" a parameter/local. Use <code>param</code> or <code>local</code> to obtain an immutable <code>Expression</code> which corresponds to the value of a new parameter/local. There are also mutable variants.</li>
+<li>An opaque <code>LVal</code> type is provided to uniformly deal with local reads/assignments and memory loads/stores. Once an <code>LVal</code> is instantiated, it can be used to read an <code>Expression</code> in the pure world, or set an <code>Expression</code> in the <code>EDSL</code> monad.</li>
+<li>Several side-effecting instructions can simply be composed with the monadic/monoidal interface, without the need to explicitly construct an anonymous block.</li>
+<li>When we need named blocks/loops with branching instructions inside, use the <code>block</code>/<code>loop</code> combinators which has the type <code>(Label -&gt; EDSL ()) -&gt; EDSL ()</code>. Inside the passed in continuation, we can use <code>break'</code> to perform branching. The <code>Label</code> type is also opaque and cannot be inspected, the only thing we know is that it's scope-checked just like any ordinary Haskell value, so it's impossible to accidently branch to an "inner" label.</li>
+</ul>
+<p>The EDSL only checks for scope safety, so we don't mess up different locals or jump to non-existent labels. Type-safety is not guaranteed (binaryen validator checks for it anyway). Underneath it's just a shallow embedded DSL implemented with a plain old state monad. Some people call it the "remote monad design pattern".</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../webassembly/" class="btn btn-neutral float-right" title="WebAssembly as a Haskell compilation target">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../architecture/" class="btn btn-neutral" title="Project architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/tweag/asterius/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../architecture/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../webassembly/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

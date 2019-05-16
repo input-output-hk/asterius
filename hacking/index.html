@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Hacking guide - Asterius</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Hacking guide";
+    var mkdocs_page_input_path = "hacking.md";
+    var mkdocs_page_url = "/asterius/hacking/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Asterius</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../building/">Building guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cabal/">Cabal support</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ahc-link/">Using ahc-dist/ahc-link</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jsffi/">JavaScript FFI</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rts-api/">Invoking RTS API in JavaScript</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ir/">IR types and transformation passes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../debugging/">The runtime debugging feature</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../architecture/">Project architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-in-hs/">Writing WebAssembly code in Haskell</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../webassembly/">WebAssembly as a Haskell compilation target</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom-ghc/">About the custom GHC fork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-experimental/">Using experimental WebAssembly features</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Hacking guide</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#hacking-guide">Hacking guide</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#hacking-with-ghcid">Hacking with ghcid</a></li>
+        
+            <li><a class="toctree-l3" href="#boot-cache-maintainence">Boot cache maintainence</a></li>
+        
+            <li><a class="toctree-l3" href="#adding-a-test-case">Adding a test case</a></li>
+        
+            <li><a class="toctree-l3" href="#using-wabt">Using wabt</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../readings/">Reading list</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reports/">Status reports</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Asterius</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Hacking guide</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/tweag/asterius/edit/master/docs/hacking.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="hacking-guide">Hacking guide</h1>
+<h2 id="hacking-with-ghcid">Hacking with <code>ghcid</code></h2>
+<p>A known-to-work workflow of hacking asterius is using <code>ghcid</code>. We also include
+an example <code>.ghcid</code> file, so running <code>ghcid</code> at the project root directory shall
+work out of the box.</p>
+<p>Some notes regarding the usage of <code>ghcid</code>:</p>
+<ul>
+<li>
+<p>Multiple lib targets can be loaded at once, but only one main target
+  (exe/test) can be loaded. When hacking a specific exe/test, modify the local
+  <code>.ghcid</code> file first, and don't commit the change. And before commiting, it
+  would be nice to run <code>stack build --test --no-run-tests</code> to make sure all
+  executables are up-to-date and not broken by lib changes.</p>
+</li>
+<li>
+<p>If some weird linker-related error related to <code>ghc-toolkit</code> or <code>binaryen</code> pops
+  up when loading <code>ghcid</code>, try adding <code>ghc-toolkit:lib</code> or <code>binaryen:lib</code> to one
+  of the <code>ghcid</code> targets in <code>.ghcid</code>.</p>
+</li>
+</ul>
+<h2 id="boot-cache-maintainence">Boot cache maintainence</h2>
+<p>As described in the building guide, <code>stack build</code> only builds the asterius
+compiler itself; additionally we need to run <code>stack exec ahc-boot</code> to run the
+compiler on the boot libs. This process is typically only needed once, but there
+are cases when it needs to be re-run:</p>
+<ul>
+<li>The boot libs in <code>ghc-toolkit/boot-libs</code> are modified.</li>
+<li>The <code>Asterius.Types</code> module is modified, so the IR types have changed.</li>
+<li>The <code>Asterius.CodeGen</code> module is modified and you're sure different code will
+  be generated when compiling the same Haskell/Cmm files.</li>
+</ul>
+<p>Most other modifications in the asterius lib/exes won't need a reboot.
+Specifically:</p>
+<ul>
+<li><code>Asterius.Builtins</code> modifications don't impact the boot cache. The builtin
+  module is generated on the fly with every linker invocation.</li>
+</ul>
+<p>When rebooting, run <code>utils/clean.sh</code> in the project root directory to purge the
+cache, then rerun <code>stack build</code> and <code>stack exec ahc-boot</code>.</p>
+<p>The <code>ahc-boot</code> process is configurable via these environment variables:</p>
+<ul>
+<li><code>ASTERIUS_CONFIGURE_OPTIONS</code></li>
+<li><code>ASTERIUS_BUILD_OPTIONS</code></li>
+<li><code>ASTERIUS_INSTALL_OPTIONS</code></li>
+</ul>
+<p>A common usage is setting <code>ASTERIUS_BUILD_OPTIONS=-j8</code> to enable parallelism in
+booting, reducing your coffee break time.</p>
+<h2 id="adding-a-test-case">Adding a test case</h2>
+<p>To add a test case, it is best to replicate what has been done for an existing testcase.</p>
+<ul>
+<li>For example, <code>git grep bytearraymini</code> should show all the places where the test case
+<code>bytearraymini</code> has been used. Replicating the same files for a new test case
+should "just work".</li>
+</ul>
+<h2 id="using-wabt">Using <code>wabt</code></h2>
+<p>We also include <code>wabt</code> in the source tree and pack it as a Cabal package. So
+<code>stack build wabt</code> will build the <code>wabt</code> binaries. To install the binaries to a
+specific location (e.g. <code>~/.local/bin</code>), set the <code>WABT_BINDIR</code> environment
+variables before building; <code>stack install</code> doesn't properly copy the binaries
+yet.</p>
+<p>The <code>wabt</code> setup script uses <code>make</code>, so it's possible to use <code>MAKEFLAGS</code>
+environment variable to pass additional arguments to <code>make</code>, e.g. setting
+<code>MAKEFLAGS=-j8</code> to speed it up.</p>
+<p>The <code>wabt</code> package exposes <code>Paths_wabt</code>, so by using <code>Paths_wabt.getBinDir</code> you
+can access the <code>wabt</code> binary location in Haskell. This can be useful when
+implementing Haskell wrappers.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../readings/" class="btn btn-neutral float-right" title="Reading list">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../wasm-experimental/" class="btn btn-neutral" title="Using experimental WebAssembly features"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/tweag/asterius/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../wasm-experimental/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../readings/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

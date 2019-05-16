@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Status reports - Asterius</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Status reports";
+    var mkdocs_page_input_path = "reports.md";
+    var mkdocs_page_url = "/asterius/reports/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Asterius</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../building/">Building guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cabal/">Cabal support</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ahc-link/">Using ahc-dist/ahc-link</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jsffi/">JavaScript FFI</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rts-api/">Invoking RTS API in JavaScript</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ir/">IR types and transformation passes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../debugging/">The runtime debugging feature</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../architecture/">Project architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-in-hs/">Writing WebAssembly code in Haskell</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../webassembly/">WebAssembly as a Haskell compilation target</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom-ghc/">About the custom GHC fork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-experimental/">Using experimental WebAssembly features</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../hacking/">Hacking guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../readings/">Reading list</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Status reports</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#status-reports">Status reports</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#2019-05-06">2019-05-06</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-04-15">2019-04-15</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-04-08">2019-04-08</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-04-01">2019-04-01</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-03-25">2019-03-25</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-03-18">2019-03-18</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-03-10">2019-03-10</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-03-04">2019-03-04</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-02-22">2019-02-22</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-02-18">2019-02-18</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-02-11">2019-02-11</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-02-04">2019-02-04</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-01-28">2019-01-28</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-01-21">2019-01-21</a></li>
+        
+            <li><a class="toctree-l3" href="#2019-01-13">2019-01-13</a></li>
+        
+            <li><a class="toctree-l3" href="#2018-12-28">2018-12-28</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Asterius</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Status reports</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/tweag/asterius/edit/master/docs/reports.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="status-reports">Status reports</h1>
+<p>This page maintains a list of weekly status reports for the project.</p>
+<h2 id="2019-05-06">2019-05-06</h2>
+<p>Covers the paralyzed few weeks since last report.</p>
+<p>To provide some context for further discussion, here is a brief summary of our attempts since we started to implement TH support, listing the approaches and encountered obstacles:</p>
+<ul>
+<li>Radical refactorings to make the linker faster.<ul>
+<li>Linking for TH is quite unlike linking for regular Haskell modules: we need to support dynamic loading of compiled object files and libraries, along with splices, and the linking &amp; execution requests may be interleaved. This required the linker to rapidly process the load requests and generate working wasm/js.</li>
+<li>This part of work is done and benefits regular linking as well.</li>
+</ul>
+</li>
+<li>Implement <code>ahc-iserv</code> and TH message handlers.<ul>
+<li>Delegating TH logic to the <code>iserv</code> process enables some degree of customization on how TH requests are handled, so we can implement wasm/js linking on the host platform.</li>
+<li>This part of work is done.</li>
+</ul>
+</li>
+<li>Implement TH running logic.<ul>
+<li>This means we need to be able to start a persistent runtime, occasionally send some pieces of wasm code, and run them to retrieve serialized results (and the wasm world may call back into the host world).</li>
+<li>To smoothen Haskell/node interaction, we revived the <code>inline-js</code> project and added loads of new functionality to it. It works well even outside the scope of asterius.</li>
+<li>TH runner is still the roadblock:<ul>
+<li>Our first attempt was trying to support incrementally loading wasm objects, running wasm code, and transfer required runtime state through some global vars. This dragged us into a long debuggathon.</li>
+<li>We're currently at the second attempt: implementing an even more naive TH runner and reducing the debugging surface. Compared to a qualified TH runner which can be shipped, the naive version:<ul>
+<li>Reuses the linking logic for regular Haskell modules.</li>
+<li>Always re-links upon running a splice.</li>
+<li>Always initiates a fresh TH state to run a splice.</li>
+</ul>
+</li>
+<li>So. Another round of debugging here.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Implementing TH is a large and challenging project which already consumed much more energy than once anticipated. At this point it might be nice to adjust our strategy a bit:</p>
+<ul>
+<li>Keep working on TH delivery, evaluate new means of debugging (e.g. reviving the previously lost debugging tracer, using V8 inspection of node, etc) to boost the process. Since it's likely not the last time we need to perform low-level debugging, the lessons we learn here should also be recorded and help later project contributors.</li>
+<li>Spare a part of time to work on other stuff, including but not limited to:<ul>
+<li>Improve the currently ad hoc test suite, start integrating ghc tests. This will give us better idea on what's currently broken and what's not.</li>
+<li>Do some housekeeping on the issue tracker. There are a few issues reported long ago but remained since TH got all the attention.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2019-04-15">2019-04-15</h2>
+<p>Covers last week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>Trying to use <code>inline-js-core</code> to run asterius compiled wasm/js. Works for:<ul>
+<li>Running regular <code>main</code> actions and retrieving results.</li>
+<li>Calling exported rts internals to manipulate closures on the Haskell heap.</li>
+</ul>
+</li>
+<li>Currently into a debugging rabbit hole related to getting simple expression splices to run and return serialized result:<ul>
+<li>We can compile a splice of type like <code>Q Exp</code>, obtain the wasm closure, then use utilities from <code>ghci</code> to initiate a TH state and actually run it.</li>
+<li>We're hit with <code>unreachable</code>s at runtime; they're due to unresolved symbols substituted to an invalid address so to let linking pass, meaning there's hidden bug in the logic of either the linker itself, or how we obtain and compile the splices.</li>
+</ul>
+</li>
+<li>Miscellaneous other improvements in <a href="https://github.com/tweag/inline-js"><code>inline-js</code></a>.<ul>
+<li>No more radical API changes are planned from now, and we have proper haddock documentation. Spread the word, give it a try in your projects too :)</li>
+</ul>
+</li>
+</ul>
+<p>Estimated work for the week:</p>
+<ul>
+<li>Solve the runtime error related to the TH splices.</li>
+</ul>
+<h2 id="2019-04-08">2019-04-08</h2>
+<p>Covers last week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>Finished all required <code>inline-js</code> improvements to make it feasible as an <code>iserv</code> component. Notable changes include:<ul>
+<li>The half-baked JSON implementation is removed. All JSON-related logic is now based on <code>aeson</code> and the higher-level <code>inline-js</code> package is required.</li>
+<li>We used to only pass encoded JSON messages via the IPC interface. Now we pass binary messages, and thus we can directly allocate a node <code>Buffer</code> from a Haskell <code>ByteString</code>, and return the <code>JSVal</code> handle to Haskell.</li>
+<li>We implemented send/receive queues and fixed a race condition related to multiple receivers to a same <code>Transport</code>.</li>
+<li>We switched the Haskell/<code>node</code> pipes from <code>stdin</code>/<code>stdout</code> to using file descriptors. This fixes the issue when <code>inline-js-core</code> executes wasm/js code produced by asterius, but due to calling <code>console</code> API in generated code, the pipes are corrupt and leaves the <code>ahc-iserv</code> process in an undefined state.</li>
+<li>We investigated the issue of supporting both static/dynamic <code>import</code> in the eval server's input code and did a prototype using the experimental <code>vm.SourceTextModule</code> interface in nodejs. Conclusion: it's not worth the trouble, and although static <code>import</code>s aren't supported by the eval server, the issue can be worked around without major changes in the asterius js codegen.</li>
+</ul>
+</li>
+<li>Updated ghc and fixed #98, working around a Cabal bug (#4651) impacting our Cabal support.</li>
+</ul>
+<p>Third-party contributions:</p>
+<ul>
+<li>Thanks to Stuart Geipel(@pimlu) for discovering an issue in the garbage collector and providing a minimal repro (#97). Investigation of this issue required fixing the "memory traps"/"tracing" rewriting passes previously removed in order to speed up the linker, so is currently scheduled behind ongoing TH work.</li>
+<li>Thanks to Yuji Yamamoto(@igrep) for discovering an issue in the Cabal support (#98), and an issue in the JSFFI implementation (#102).</li>
+</ul>
+<p>Estimated work for the week:</p>
+<ul>
+<li>Just finish the <code>iserv</code> implementation (on the node side; nothing left to do on the Haskell side), get a <code>th</code> unit test up and running.</li>
+</ul>
+<h2 id="2019-04-01">2019-04-01</h2>
+<p>Covers last week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>Refactored <code>inline-js-core</code>/<code>inline-js</code> and implemented the binary IPC interface. This is a part of the work on the <code>node</code> side of <code>iserv</code>.<ul>
+<li><code>inline-js</code> was based on a textual IPC interface using JSON messages via <code>readline</code>. When writing <code>iserv</code> logic this proved to be an annoyance; we'd like to reuse the <code>Message</code> type and its <code>Binary</code> instance in <code>libiserv</code>, instead of coming up with a JSON schema for every message; also it doesn't play nice with messages with blobs. Now <code>inline-js-core</code> directly transmits binary IPC, and it can be backed by any backend (e.g. stdio or network).</li>
+</ul>
+</li>
+<li><code>inline-js-core</code> now supports evaluating ES6 module code containing dynamic <code>import()</code>s. This is critical to <code>iserv</code> implementation since our code generator also generates ES6 modules.</li>
+<li>Did some linker profiling and revealed that repeated serialization is a previously undiscovered bottleneck:<ul>
+<li>In <code>ahc-ld</code>, we pick up all library archives and object files, emit a persistent "linker state" as a pseudo-executable, which is later read by <code>ahc-dist</code> to produce executable wasm/js.</li>
+<li>When no-DCE mode is on, the linker state contains data/functions in all libraries, and although we have some degree of lazy-loading, we can't lazily save things without forcing their evaluation. Thus come the extra costs.</li>
+</ul>
+</li>
+</ul>
+<p>Estimated work for this week:</p>
+<ul>
+<li>Support evaluating static <code>import</code> declarations in <code>inline-js-core</code>, since they are included in our js stubs. If proven to be hard, we add a switch in the code generator to only emit <code>import()</code>s instead.</li>
+<li>Implement the <code>iserv</code> message handlers in node.</li>
+</ul>
+<h2 id="2019-03-25">2019-03-25</h2>
+<p>Covers last week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>Implemented the linker's "no-DCE" mode. Dead code elimination is now optional and can be switched off via <code>--no-gc-sections</code>, and this is preferrable behavior for dynamic linking. Note that for regular linking in <code>ahc-link</code>, no-DCE mode takes considerably longer and emits a <code>.wasm</code> as large as 40MB.</li>
+<li>Removed all "rewriting passes" for code in the linker.<ul>
+<li>Previously, the linker grabs a self-contained set of data/functions, perform whole-program AST rewritings for several times, then feed the output to <code>wasm-toolkit</code>/<code>binaryen</code> backend to emit real WebAssembly binaries.</li>
+<li>By removing these passes, there's a roughly 75% speedup measured in <code>fib</code> for no-DCE mode, around one minute from loading all archives to <code>node</code> compiling and running output code.</li>
+<li>Another advantage of removing those passes: there's now a lot less linker state to keep track of, thus clearing up the last mile path to fully incremental linking.</li>
+<li>Minor downsides to the linker refactorings:<ul>
+<li>We used to have an "EmitEvent" primitive in our IR which allows embedding any Haskell string as an "event" and emit it when using the monadic EDSL to construct WebAssembly code. This mechanism now degraded from allowing any string to an enumerable set of events.</li>
+<li>When the linker found a function which contains a compile-time error message, it used to emit a stub function which reports that message and crashes at runtime. Now we don't emit those anymore, and when such a function is called at runtime, the compile-time error message is not reported.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Other work, when the main thread stalled:</p>
+<ul>
+<li>Implemented the WebAssembly tail call opcodes in <code>wasm-toolkit</code> and the tail-calls mode in asterius, enabled with <code>--tail-calls</code>, tested on CI with V8 team's latest nodejs build.<ul>
+<li>The tail-calls mode gets rid of trampolining during Haskell/Cmm execution. When the user is in full control of the execution platform and doesn't mind adding a V8 flag to enable tail calls, this should result in better performance.</li>
+<li>It's unsupported by the binaryen backend yet, but we managed to re-enable the binaryen relooper, which at this moment still emits better binary than our own relooper. It seems the binaryen relooper works fine only if no value is returned from any basic block. Back when we didn't roll our own relooper and didn't realize this, it was a constant source of undefined behavior and debugging nightmares.</li>
+</ul>
+</li>
+<li>Simplified the <code>binaryen</code> build script to not rely on <code>ar -M</code>. Got rid of CPP usage and fixed a build warning on non-macOS platforms.</li>
+</ul>
+<p>Planned work for the week:</p>
+<ul>
+<li>Conclude all linker work.<ul>
+<li>All performance potential for the current linker architecture is possibly squeezed out now. It's not as fast as we want, but it's easily cachable. Once we have a fully persistent linker state, we can cache and reuse it on the first TH run, so it won't take minutes to run splices.</li>
+</ul>
+</li>
+<li>Finish the <code>node</code> side of <code>iserv</code> logic and get preliminary TH support.</li>
+</ul>
+<h2 id="2019-03-18">2019-03-18</h2>
+<p>Covers last week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>Removed the memory &amp; table sections in output wasm binaries; now we initiate wasm memory/table in js, and it's possible to transfer them across multiple asterius instances.<ul>
+<li>Rationale: The wasm spec includes data/element segment sections to initialize certain ranges of the memory/table, and also separate memory/table sections to implicitly create an empty memory/table. When incrementally linking multiple compilation units, we need to take memory/table of the previous asterius instance, "append" some data &amp; code while preserving previous content.</li>
+<li>This involved some unexpected debugging sessions, and we also needed to patch the in-tree <code>binaryen</code> library to avoid dropping the <code>binaryen</code> backend. Thankfully we sorted out that mess</li>
+</ul>
+</li>
+<li>Figured out that running regular linker passes on all loaded boot library archives is <em>incredibly</em> slow, and it was also harder than expected to add an incremental mode.<ul>
+<li>Besides regular wasm function/data, there are also other stuff in asterius compilation units like FFI marshal info, pooled error messages, etc, which used to work nicely with "one-shot" linking, but harder for incremental mode.</li>
+<li>A failed attempt to speed things up: use global string interning for symbols, which are central to almost every function in asterius modules. Surprisingly no noticable speedup after the patch is applied, so this remains unmerged.</li>
+</ul>
+</li>
+</ul>
+<p>Planned work for this week:</p>
+<ul>
+<li>Factor out a set of self-contained "linker state" and "runtime state" types, which are guaranteed serializable and thus easy to transfer. Memory/table was not enough, we also needed to take care of things like JSFFI imports/exports, SPT, eventlogs, error message pools, etc.</li>
+<li>Generate both "vanilla" and "dynamic" ways of wasm code in asterius object files. The "dynamic" code should already be wasm binaries without requiring whole-program rewriting passes, and we also include a custom section with symbol locations in the binary, so only a fast link-time relocating pass is required when loading a "dynamic" way wasm binary.</li>
+</ul>
+<h2 id="2019-03-10">2019-03-10</h2>
+<p>Covers this week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>About the <code>iserv</code> experiment:<ul>
+<li>Started implementing <code>ahc-iserv</code>, which is capable of receiving messages from the host <code>ghc</code> process.</li>
+<li>Originally, GHC compiles TH splices to bytecode and sends them to <code>iserv</code>. Given we don't support bytecode (yet), we hacked on that direction a little bit, and now we can compile splices to wasm modules using our regular cmm to wasm functionality.</li>
+<li>Updated <code>ghc</code> again, and included several new packages into the boot libs: <code>filepath</code>/<code>time</code>/<code>unix</code>/<code>directory</code>/<code>ghc-boot</code>/<code>ghc-heap</code>/<code>ghci</code>. A lot of functionalities in these packages won't work yet, they exist to support <code>ghci</code>, which includes necessary code to run TH and communicate with the host <code>ghc</code> process.</li>
+</ul>
+</li>
+<li>Miscellaneous other improvements:<ul>
+<li>Implemented more accurate dependency analysis for JSFFI. Previously, whenever something in a module was included in linker output, all JSFFI info of that module is also included, resulting in potentially bloated wasm import section and generated wrapper js module. Now the output wasm code and wrapper js modules are even slimmer.</li>
+<li>Removed the legacy <code>AsteriusStore</code> type and related logic from the linker. It was a combination of two mappings: from symbols to module names and from module names to lazily loaded modules. It was closely related to the legacy "object store" mechanism which stores wasm objects elsewhere and doesn't respect ghc's object output path, and since we fixed that for Cabal support, it's time to pull this weed and simplify things. The linker now solely operates on the <code>AsteriusModule</code> type.</li>
+<li>Implemented lazier deserialization for <code>AsteriusModule</code>. Now when loading a wasm object, we defer the deserialization of individual entities(data segments or functions) until they're actually included into the output module. Compared to the old module-level lazy loading mechanism, there's no noticable increase on memory usage.</li>
+<li>Optimized the code of dependency analysis.</li>
+<li>Enabled the <code>binaryen</code> backend to output wasm name section in debug mode. Previously, when wasm execution traps, V8 would output a stack trace, with only function ids for wasm functions. Now we spare the trouble of reading the linker report and remapping ids to function names when debugging. Note that the <code>wasm-toolkit</code> backend doesn't handle the name section yet.</li>
+</ul>
+</li>
+</ul>
+<p>Planned work for next week:</p>
+<ul>
+<li>The plumbings from <code>ahc</code> to <code>ahc-iserv</code> are ready, now we need to implement an eval server running on <code>node</code> and the RPC logic between it and <code>ahc-iserv</code>. The eval server should be capable of:<ul>
+<li>Initializing rts state</li>
+<li>Receiving a wasm module from <code>ahc-iserv</code> and remapping existing wasm memory and table</li>
+<li>Running a splice, sending serialized results to <code>ahc-iserv</code></li>
+<li>Sending necessary ghc queries when running splices</li>
+</ul>
+</li>
+<li>The requirements listed above also implies that we need to finish the linker's incremental mode first.</li>
+<li>The runtime also needs to support:<ul>
+<li>Interleaved static/non-static memory regions, and reserving an address range for data segments in new incoming wasm modules</li>
+<li>Minimal Haskell exception handling support, so we can reply a <code>QFail</code> in <code>ahc-iserv</code> correctly when an exception is thrown instead of silently dying. (Informative error messages which include information recovered from <code>Show</code> instance of <code>SomeException</code> are harder to implement)</li>
+</ul>
+</li>
+</ul>
+<h2 id="2019-03-04">2019-03-04</h2>
+<p>Covers last week.</p>
+<p>Completed work:</p>
+<ul>
+<li>Thorough refactorings in the linker to improve performance &amp; modularity.<ul>
+<li>The linker used to produce small code faithfully, but the speed was slow. Moreover, the code was quite messy, with multiple pieces of whole-program traversal code scattered across a single module.</li>
+<li>In order to deliver TH support, we need the linker to be:<ul>
+<li>Fast, loading archives &amp; objects and performing all necessary rewriting passes quickly. Most likely the expensive dead code elimination optimization will hurt us in this scenario and we need a switch to disable it.</li>
+<li>Incremental. Loading some new object code into the linker state must not trigger expensive re-compilation of old code.</li>
+</ul>
+</li>
+<li>We tidied up the linker code, moved each rewriting pass to a separate module and fused them into a single pipeline. The fusion guarantees that after dependency analysis, the AST is only traversed once to perform all necessary rewritings and produce executable wasm code.</li>
+</ul>
+</li>
+<li>Updated <code>ghc</code> and standard libraries to a recent revision (<code>8.7.20190217</code> -&gt; <code>8.9.20190301</code>). This includes Moritz Angermann's work to improve <code>iserv</code>.</li>
+</ul>
+<p>Planned work for the week:</p>
+<ul>
+<li>Start experimenting with <code>iserv</code> stuff.</li>
+<li>Continue working to improve the linker:<ul>
+<li>The linker code now has some space for adding incremental linking logic. Whether/how it works for TH depends on more knowledge accumulated from <code>iserv</code> experiments.</li>
+<li>Besides rewriting passes, another major performance bottleneck is dependency analysis, where we start from a global "store" and root symbols to scrap a self-contained module. We'll deal with this one for this week. For TH, we'll explore the possibility of adding a switch for faster linking &amp; larger output code.</li>
+<li>All rewriting passes for non-debug mode are migrated to the new pipeline, but two additional passes for debug mode are left untouched for now: "memory traps" &amp; "tracing". They are tricky to get right in the new framework, and given debug mode doesn't impact regular users, these two may be left as they are for a bit more time.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2019-02-22">2019-02-22</h2>
+<p>Covers this week.</p>
+<p>Completed work:</p>
+<ul>
+<li>Finished preliminary Cabal support.<ul>
+<li>The executable targets are implemented. It's possible to call <code>ahc --make</code> directly or via <code>ahc-cabal new-build</code> to get an "executable". The "executable" can be quickly converted to node/web artifacts by <code>ahc-dist</code>.</li>
+<li><code>ahc-cabal</code> is a simple wrapper of <code>cabal</code>. <code>stack</code> is possibly also supported if we provide the same configure flags. Might worth a try in the future.</li>
+<li>Cabal tests/benchmarks/documentation is not implemented yet.<ul>
+<li><code>haddock</code> won't work yet.</li>
+<li>Tests/benchmarks should build fine like normal executables, but Cabal can't run them like vanilla executables yet. The executables can still be "run" with <code>ahc-dist --run</code>.</li>
+</ul>
+</li>
+<li><code>ahc-dist</code> works similarly like the legacy <code>ahc-link</code> tool. They share most command line arguments, except <code>ahc-dist</code> expects <code>--input-exe</code>; it starts from executable files, where <code>ahc-link</code> starts from Haskell sources.</li>
+</ul>
+</li>
+</ul>
+<p>Third-party contributions:</p>
+<ul>
+<li>Thanks to Piotr Majkrzak(@majkrzak) for a PR fixing a <code>--browser</code> problem (#73), and issue #70 for reducing Docker image size, #74 for simplifying export module interface.</li>
+</ul>
+<p>Planned work for next week:</p>
+<ul>
+<li>Start working on Template Haskell/GHCi/Plugins (#54). This is the last major planned feature of 2019 Q1.</li>
+<li>Other potential work, in case my main thread become stalled like it always did in the past:<ul>
+<li>Easy improvements in gc, e.g. adding stats.</li>
+<li>Experiment on creating a more asynchronous runtime. A relevant issue will be added shortly.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2019-02-18">2019-02-18</h2>
+<p>Covers last week.</p>
+<p>Completed work, mainly routine maintainence:</p>
+<ul>
+<li>Updated <code>ghc</code> and standard libraries to a recent revision (<code>8.7.20181115</code> -&gt; <code>8.7.20190217</code>)</li>
+<li>Updated <code>binaryen</code> and <code>wabt</code> toolchains</li>
+<li>Added the experimental bulk memory opcodes in the <code>binaryen</code> Haskell bindings</li>
+</ul>
+<p>Ongoing work:</p>
+<ul>
+<li>Finished implementation of library targets for Cabal.<ul>
+<li>The <code>ahc</code> executable was only meant to be invoked from the boot script. Now it can be run to compile any user input Haskell/Cmm code and produce object files.</li>
+<li><code>ahc-ar</code> is implemented to generate <code>.a</code> static libs, and those libs contain symbol indices required by asterius linker. The static libs can later be used as linker inputs.</li>
+<li>Currently, no patching to Cabal is required.</li>
+</ul>
+</li>
+</ul>
+<p>Planned work for this week:</p>
+<ul>
+<li>Finish implementation of executable targets for Cabal.<ul>
+<li>When compiling the "executable" targets, final linking (including any necessary LTO &amp; rewriting passes) is done. The resulting file can be quickly converted to node/web artifacts by an external tool.</li>
+<li>The legacy mechanism for storing/retrieving wasm objects will be removed, and we'll only rely on the static libs and input object files for linking.</li>
+<li>Add unit tests for compiling &amp; running stuff via <code>cabal-install</code>.</li>
+</ul>
+</li>
+<li>Some improvements in gc, if we manage to finish Cabal stuff.</li>
+</ul>
+<h2 id="2019-02-11">2019-02-11</h2>
+<p>Covers last week.</p>
+<p>Completed work:</p>
+<ul>
+<li>Fixed known regressions of GC &amp; released the initial version.</li>
+</ul>
+<p>Additional known drawbacks of the initial version (see report of previous week):</p>
+<ul>
+<li>There is currently no runtime logs/stats about garbage collection.</li>
+<li>There is currently no tunable parameters; at least we should allow specifying when "real" gc happens and when we just allocate a new nursery instead of traversing the heap (e.g. "real" gc happens when the live semispace size grows beyond a threshold)</li>
+<li><code>StgTSO</code>/<code>StgStack</code> objects are unnecessarily pinned to simplify scheduler implementation a bit, but they really should be unpinned.</li>
+</ul>
+<p>Planned work for this week:</p>
+<ul>
+<li>Start working on Cabal support.</li>
+<li>Some easy improvements in gc, e.g. adding stats/logs, implementing parameters.</li>
+</ul>
+<h2 id="2019-02-04">2019-02-04</h2>
+<p>Covers last week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>Finished the preliminary implementation of GC.<ul>
+<li>To increase reliability and catch regressions, after each GC pass, the recycled space is zeroed. If the tospace still contains pointers to recycled space (which is definitely a bug), the program is likely to crash early.</li>
+<li>This has helped us to identify &amp; fix a few bugs in the GC implementation. Right now there is only one regression left: the todomvc example crashes after initial loading completes. The crash goes away if we don't zero recycled space, but it's not a good idea to just turn that off and pretend there's no bug!</li>
+</ul>
+</li>
+</ul>
+<p>Remaining work for GC:</p>
+<ul>
+<li>Fix the todomvc regression. Given GC is such a critical component in the runtime, it's probably also good timing to integrate some more unit tests from the GHC test suite.<ul>
+<li>This also needs some improvement in our debugging infrastructure: our memory traps (wasm read/write barriers) is currently unaware of recycled/live space, and now we should make it cooperate with the allocator to catch invalid access to recycled space earlier.</li>
+</ul>
+</li>
+</ul>
+<p>Known drawbacks of current GC implementation once it's fully fixed &amp; merged:</p>
+<ul>
+<li>No generational GC yet, so high GC overhead if a large volume of long-lived data is retained through program execution.</li>
+<li>Heap fragmentation is more severe when allocating a lot of small pinned objects.</li>
+<li><code>Weak#</code> support is expected to split into two different stages and will land after initial GC merge:<ul>
+<li>Support for running "C finalizers" added by the <code>addCFinalizerToWeak#</code> primop. Here, the "C finalizers" are really just JavaScript functions, and the "function pointers" are JavaScript references.</li>
+<li>Support for running arbitrary <code>IO</code> action as finalizers. This task requires support for Haskell multi-threading, and given multi-threading is not a scheduled goal of 2019 Q1, this will come later.</li>
+</ul>
+</li>
+<li>Haskell closures exported to JavaScript using <code>makeHaskellCallback*</code> cannot be automatically recycled when they aren't used anymore. This is due to JavaScript's lacking of finalizers; users will need to call <code>freeHaskellCallback*</code> by hand to prevent leaking on the Haskell side.</li>
+</ul>
+<p>We'll yield to Cabal support &amp; TH/GHCi/Plugins support after the first version of GC is delivered. There's definitely room for improvement later (e.g. reduce heap fragmentation, different GC algorithms for different workloads, more detailed GC statistics, etc), but those will be managed by separate tickets.</p>
+<h2 id="2019-01-28">2019-01-28</h2>
+<p>Covers last week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>More work to improve the sanity checker and get GC near completion:<ul>
+<li>The sanity checker spotted a fatal situation where previously unreachable static closures become reachable again. More experiments in this direction invalidated a previous conjecture that no special treatments for static closure is required as long as they have valid block descriptors and can be moved just like dynamic ones.</li>
+<li>The solution to the problem above is not hard: when scanning an info table, we also follow the SRT if it's present, and we still need to identify static/dynamic closures and prevent moving static ones. This is implemented in the sanity checker.</li>
+<li>The sanity checker is no longer backed by explicit recursion. When scanning a long chain of closures, we won't run out of JavaScript stack space.</li>
+<li>Adjusting the codegen &amp; standard libraries to cope with upcoming GC:<ul>
+<li>The <code>makeHaskellCallback*</code> interfaces now properly allocate a stable pointer for the exported Haskell closure. This is to ensure that they remain valid when later called from JavaScript, even after GC runs.</li>
+<li>The function closures of <code>foreign export javascript</code> clauses are recognized and become GC roots for similar reasons.</li>
+<li><code>Asterius.Types</code> is moved from <code>ghc-prim</code> to <code>base</code>, so the <code>JSVal</code> type can be backed by <code>StablePtr</code>. The GC will use a tag bit to identify regular stable pointers and JavaScript references, and automatically free unused references.</li>
+<li><code>Integer</code> is promoted to a standalone datatype, so the GC can scan reachable <code>Integer</code>s and free unreachable ones which point to <code>BigInt</code>s.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Remaining work for GC:</p>
+<ul>
+<li>Implement evac/scav functionality.</li>
+<li>Implement support for <code>Weak#</code>s based on the constraint that no Haskell execution is required when firing a finalizer.</li>
+</ul>
+<h2 id="2019-01-21">2019-01-21</h2>
+<p>Covers last week.</p>
+<p>Ongoing work:</p>
+<ul>
+<li>Bugfixes &amp; partially done GC work of later stages (recycling Haskell heap space &amp; JavaScript references):<ul>
+<li>Unified treatment of regular <code>StablePtr#</code>s and <code>JSVal</code> in the runtime. They are identified by a tag bit, and GC will be able to recognize live <code>JSVal</code>s when scanning the Haskell heap.</li>
+<li>Added the SPT as sanity check/garbage collection roots.</li>
+<li>Fixed a sanity check bug related to AP/PAP heap objects. This could be triggered when checking the SPT after passing a closure built by chained <code>rts_apply</code> calls to <code>rts_evalStableIO</code>.</li>
+<li>Reimplemented the linker layout code. We now put non-closures &amp; closures to separate regions, and the regions are statically allocated block groups which is handled by the sm uniformly like dynamically allocated groups. This enables us to treat static closures as if they're dynamic ones without any special hack.</li>
+<li>Simplified the block allocator. We no longer manage block at 4K granularity; now we only manage 1M sized ones. Pros &amp; cons:<ul>
+<li>Much fewer blocks needed to manage, so simpler/faster runtime code.</li>
+<li>Larger nurseries mean the Haskell mutator code signals <code>HeapOverflow</code> much less frequently. Should reduce amortized GC cost.</li>
+<li>The main drawback is increated heap fragmentation when it comes to allocating lots of small pinned objects. This is not yet a primary concern, and can be addressed later by a hybrid GC which switches to non-moving mark-sweep algorithm for block groups with pinned objects.</li>
+</ul>
+</li>
+<li>Added functionality to free block groups, so they can later be reused without growing the linear memory. Their payloads can be zeroed to eliminate a potential attack surface (or for better reproduction of bugs in case something goes wrong)</li>
+<li>Moved <code>allocate*</code> to the JavaScript runtime and properly implemented <code>allocatePinned</code>. Previously it was simply an alias of <code>allocate</code> since we didn't move anything around.</li>
+</ul>
+</li>
+</ul>
+<p>Planned work for next week:</p>
+<ul>
+<li>Wrap up all GC work and get a fully functional GC up &amp; running. This was originally planned to finish by end of last week, but fell behind schedule due to the hidden workload described above. Required work:<ul>
+<li>Implement evac/scav functionalities in the runtime.</li>
+<li>Remove the now obsolete symbol table exporting mechanism, and any closure required to survive all GC scans need to be explicitly present in the SPT upon startup.</li>
+<li>Remove the terrible hacks of directly coercing between GC pointers of boxed types and regular <code>Addr#</code>s when crossing the FFI boundary. Now we must properly pass <code>StablePtr#</code>s.</li>
+<li>Breaking refactorings in the current boot libs:<ul>
+<li>The <code>JSVal</code> family of types need to be moved from <code>ghc-prim</code> to <code>base</code> (or a separate package depending on <code>base</code>), since it needs to be a <code>newtype</code> wrapper of <code>StablePtr</code> which is defined in <code>base</code>.</li>
+<li>The <code>Integer</code> type gets promoted to a standalone datatype. We still use tagging to identify small <code>Integer</code>s and <code>BigInt</code>s which is managed by SPT just like other <code>JSVal</code>s.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2019-01-13">2019-01-13</h2>
+<p>Covers the last week. The week before was new year vacation; happy new year everyone!</p>
+<p>Completed &amp; ongoing work:</p>
+<ul>
+<li>Completed the "modularized runtime" refactorings. (#50)</li>
+<li>Drafted three feature roadmaps:<ul>
+<li>Implement proper garbage collection (#52)</li>
+<li>Implement Cabal support (#53)</li>
+<li>Implement support for Template Haskell/GHCi/Plugins (#54)</li>
+<li>The above proposals are scheduled to be completed on 2019 Q1.</li>
+</ul>
+</li>
+<li>Began working on GC, and finished the first stage: accurate heap objects traversal.<ul>
+<li>Identify different types of data sections in object files (regular bytes/info tables/closures). The info table addresses are emitted into generated JavaScript to allow an accurate info table sanity check.</li>
+<li>Implemented runtime utils for directly manipulating the linear memory with tagged addresses.</li>
+<li>Implemented the sanity check which traverses the whole heap and visits every live object. All existing unit tests pass this check.</li>
+</ul>
+</li>
+</ul>
+<p>Planned work for next week:</p>
+<ul>
+<li>Finish the second stage of GC support: evacuate/scavenge.<ul>
+<li>See #52 for details. After this is finished, GC will be operational.</li>
+<li>Support for handling <code>JSVal</code> and <code>Weak#</code> is scheduled in later stages.</li>
+</ul>
+</li>
+</ul>
+<p>Originally scheduled but lowered priority:</p>
+<ul>
+<li>Improving the Cloudflare worker demo. We're prioritizing more pressing issues like GC over specific use cases right now.</li>
+</ul>
+<p>Special thanks to Moritz Angermann (@angerman) for contributing a patch (#55) for fixing <code>ar</code> problem on macOS, and helping to improve macOS &amp; cabal support, discovering a GHC bug related to tables-next-to-code (#16174).</p>
+<h2 id="2018-12-28">2018-12-28</h2>
+<p>Covers the last two weeks.</p>
+<p>Completed work:</p>
+<ul>
+<li>Significant refactorings in the runtime.<ul>
+<li>Pruned ~500 loc weed code in <code>Asterius.Builtins</code> without breaking tests.</li>
+<li>Enhanced the scheduler.<ul>
+<li>Previously, when entering a Haskell thread, we evaluated to completion and checked the return code; if something goes wrong, we would just throw an error.</li>
+<li>Now, the scheduler is capable of handling certain scenarios like heap overflow and resuming Haskell execution.</li>
+</ul>
+</li>
+<li>Enhanced the storage manager.<ul>
+<li>Previously, the block allocator always triggered a <code>grow_memory</code> opcode when requesting blocks, making a lot of <code>Array#</code>/<code>ByteArray#</code> related primops rather in-efficient. Also, we allocated a huge heap (defaults to 1G) upon startup and pretended it won't run out.</li>
+<li>Now, the block allocator grows the linear memory efficiently. And the initial heap is small (4K for both the nursery and the object pool); an overflow condition automatically extends it.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Implemented the "persistent vault" feature.<ul>
+<li>Every asterius instance has a KV store called a "vault" which can be accessed in both Haskell/JavaScript. It can be used to transfer state across instances, so when an instance throws errors we can't handle, we can restart a new one without losing context.</li>
+<li>This is a part of the work for Cloudflare Worker showcase.</li>
+</ul>
+</li>
+<li>Delivered a working TodoMVC example and issued a blog post.</li>
+<li>Other notable bugfixes/improvements:<ul>
+<li>Fixed the <code>dirty_MUT_VAR</code> write barrier for <code>MutVar#</code>s. All non-atomic <code>MutVar#</code>/<code>IORef</code>/<code>STRef</code> operations now work. This is a part of the work for TodoMVC showcase.</li>
+<li>We implemented UTF8/UTF16-LE/UTF32-LE/Latin-1 encoding/decoding in the runtime. This is a part of the work for <code>text</code> support.</li>
+<li>The <code>makeHaskellCallback</code> functions are slightly more efficient by avoiding the overhead of allocating <code>StablePtr</code>s.</li>
+</ul>
+</li>
+</ul>
+<p>On-going work not completed yet:</p>
+<ul>
+<li>Modularizing the runtime.<ul>
+<li>Previously, the runtime is a single monolithic JavaScript script which is pasted into the output script. We'd like to split it to modules, and allow users to supply their own module to override the default behavior (evaluating <code>Main.main</code> once).</li>
+<li>Rationales:<ul>
+<li>For users, it's much more convenient to implement custom logic via a proper module file. Especially in the Cloudflare Worker case, where we need:<ul>
+<li>Fully synchronous initialization</li>
+<li>Capturing errors/rebooting a new instance</li>
+</ul>
+</li>
+<li>It's now possible to write tests for individual pieces of the runtime. This is critical to improve the runtime's reliability.</li>
+<li>There were some pasted parts in the monolithic runtime; now we can properly reuse code.</li>
+<li>It's also convenient to inject link-time information into the runtime.</li>
+</ul>
+</li>
+<li>We've introduced <code>parcel</code> into our toolchain to implement a "bundling" functionality: at link-time, re-generating a standalone <code>.js</code> file containing all the runtime modules. This is already implemented.</li>
+<li>We're gradually splitting the monolithic runtime to modules, taking care not to break stuff. Not completed; so far so good.</li>
+</ul>
+</li>
+<li>Delivering a non-trivial Cloudflare Worker demo.<ul>
+<li>We already have a trivial one working. It's trivial because it only does synchronous request -&gt; response computation; more "real-world" ones will need to invoke asynchronous JavaScript computation (e.g. using Fetch API)</li>
+<li>Dealing with JavaScript asynchronous computation is not quite tolerable yet; we need to litter the code with <code>makeHaskellCallback*</code>, at least one such call for a JavaScript <code>await</code>.</li>
+<li>We currently have two potential approaches of improving user experience with async js code:<ul>
+<li>Implement some CPS-based EDSL to automatically deal with callback marshaling.</li>
+<li>Implement a simple IO manager in the runtime which is capable of suspending Haskell threads when calling async js code and resuming them upon resolving/rejecting.</li>
+<li>The second one sounds much more decent, but has a high difficulty level. We'll start from the first one.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Rough plans for next week:</p>
+<ul>
+<li>Finish the work on modularizing the runtime, document new behavior of JavaScript generation, then merge to <code>master</code>.</li>
+<li>Deliver a more decent Cloudflare worker demo which calls some async js code.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../readings/" class="btn btn-neutral" title="Reading list"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/tweag/asterius/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../readings/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

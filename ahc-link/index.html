@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Using ahc-dist/ahc-link - Asterius</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Using ahc-dist/ahc-link";
+    var mkdocs_page_input_path = "ahc-link.md";
+    var mkdocs_page_url = "/asterius/ahc-link/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Asterius</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../building/">Building guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cabal/">Cabal support</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Using ahc-dist/ahc-link</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#using-ahc-distahc-link">Using ahc-dist/ahc-link</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#basic-inputoutput-options">Basic input/output options</a></li>
+        
+            <li><a class="toctree-l3" href="#common-options-for-controlling-outputs">Common options for controlling outputs</a></li>
+        
+            <li><a class="toctree-l3" href="#-sync">--sync</a></li>
+        
+            <li><a class="toctree-l3" href="#more-advanced-options-for-hackers">More advanced options for hackers</a></li>
+        
+            <li><a class="toctree-l3" href="#options-affecting-the-linker">Options affecting the linker</a></li>
+        
+            <li><a class="toctree-l3" href="#additional-outputs-for-the-curious">Additional outputs for the curious</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jsffi/">JavaScript FFI</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rts-api/">Invoking RTS API in JavaScript</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ir/">IR types and transformation passes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../debugging/">The runtime debugging feature</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../architecture/">Project architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-in-hs/">Writing WebAssembly code in Haskell</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../webassembly/">WebAssembly as a Haskell compilation target</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom-ghc/">About the custom GHC fork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-experimental/">Using experimental WebAssembly features</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../hacking/">Hacking guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../readings/">Reading list</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reports/">Status reports</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Asterius</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Using ahc-dist/ahc-link</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/tweag/asterius/edit/master/docs/ahc-link.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="using-ahc-distahc-link">Using <code>ahc-dist</code>/<code>ahc-link</code></h1>
+<p><code>ahc-link</code> is the frontend program of Asterius. It taks a Haskell <code>Main</code> module and optionally an ES6 "entry" module as input, then emits a <code>.wasm</code> WebAssembly binary module and companion JavaScript, which can be run in Node.js or browser environments.</p>
+<p><code>ahc-dist</code> works similarly, except it takes the "executable" file generated from <code>ahc</code> (either directly by calling <code>ahc</code>, or indirectly by using <code>cabal</code>) as input. Most command-line arguments are the same as <code>ahc-link</code>, except <code>ahc-link</code> takes <code>--input-hs</code>, while <code>ahc-dist</code> takes <code>--input-exe</code>.</p>
+<p>The options are described in full details here.</p>
+<h2 id="basic-inputoutput-options">Basic input/output options</h2>
+<h3 id="-input-hs-arg"><code>--input-hs ARG</code></h3>
+<p>The Haskell <code>Main</code> module's file path. This option doesn't have a default and is mandatory; all others are optional. This works only for <code>ahc-link</code>.</p>
+<h3 id="-input-exe-arg"><code>--input-exe ARG</code></h3>
+<p>The "executable" file path. This works only for <code>ahc-dist</code>, and is also mandatory.</p>
+<h3 id="-input-mjs-arg"><code>--input-mjs ARG</code></h3>
+<p>The ES6 "entry" module's file path. If not specified, the default entry module initializes an Asterius instance and calls <code>Main.main</code>, and upon normal completion, prints the standard output via <code>console.log</code>.</p>
+<p>It's possible to override the default behavior by specifying your own entry module. First, you need two imports (the relevant files are auto-generated and don't exist yet):</p>
+<pre><code>import { module } from &quot;./xx.wasm.mjs&quot;;
+import { newInstance } from &quot;./xx.lib.mjs&quot;;
+</code></pre>
+
+<p>Assuming <code>xx.hs</code> is the input Haskell <code>Main</code> module.</p>
+<p>Now, <code>module</code> is a <code>Promise</code> which resolves to a <code>WebAssembly.Module</code>. It's stateless and supports structured cloning, so it's possible to reuse it by send it to <code>Worker</code>s, store it in IndexedDB, etc. To avoid unnecessary compilation when reusing it, you need the dynamic <code>import()</code> for <code>xx.wasm.mjs</code> instead.</p>
+<p><code>newInstance</code> is an async function which takes the <code>WebAssembly.Module</code> and resolves to an Asterius instance. An Asterius instance is a super-set of a <code>WebAssembly.Instance</code> and contains stateful fields to support running Haskell code. You can take a look at the manually written entry modules in <code>asterius/test</code> to get some idea on the capabilities of such an instance.</p>
+<h3 id="-output-directory-arg"><code>--output-directory ARG</code></h3>
+<p>Specifies the output directory. Defaults to the same directory of <code>--input-hs</code>.</p>
+<h3 id="-output-prefix-arg"><code>--output-prefix</code> ARG</h3>
+<p>Specifies the prefix of the output files. Defaults to the base filename of <code>--input-hs</code>, so for <code>xx.hs</code>, we generate <code>xx.wasm</code>, <code>xx.lib.mjs</code>, etc.</p>
+<h2 id="common-options-for-controlling-outputs">Common options for controlling outputs</h2>
+<h3 id="-tail-calls"><code>--tail-calls</code></h3>
+<p>Enable the WebAssembly tail call opcodes in output binary. This requires Node.js/Chromium to be built with a fairly recent revision of V8, and called with the <code>--experimental-wasm-return-call</code> flag. Doesn't work with the binaryen backend yet.</p>
+<p>See the "Using experimental WebAssembly features" section for more details.</p>
+<h3 id="-ghc-option-arg"><code>--ghc-option ARG</code></h3>
+<p>Specify additional ghc options. The <code>{-# OPTIONS_GHC #-}</code> pragma also works.</p>
+<h3 id="-browser"><code>--browser</code></h3>
+<p>Indicates the output code is to be run in a browser environment. By default, the output code is intended to be run by Node.js instead.</p>
+<h3 id="-bundle"><code>--bundle</code></h3>
+<p>Instead of copying the runtime <code>.mjs</code> modules to the target directory, generate a self-contained <code>xx.js</code> script, and running <code>xx.js</code> has the same effect as running the entry module. Only works for browser targets.</p>
+<p><code>--bundle</code> is supported by <a href="https://parceljs.org/"><code>Parcel</code></a> under the hood and performs minification on the bundled JavaScript file. It's likely beneficial since it reduces total size of scripts and doesn't require multiple requests for fetching them.</p>
+<h2 id="-sync"><code>--sync</code></h2>
+<p>Use synchronous <code>WebAssembly.Module</code>/<code>WebAssembly.Instance</code> constructors in output code. Additionally,</p>
+<ul>
+<li>The <code>module</code> value exported by <code>xx.wasm.mjs</code> is no longer a <code>Promise</code>, but the <code>WebAssembly.Module</code> value itself.</li>
+<li>The <code>newInstance</code> function exported by <code>xx.lib.mjs</code> is no longer async, but returns the Asterius instance synchronously.</li>
+</ul>
+<p>We don't recommend using <code>--sync</code> for most use cases (even for the Node.js target). It's intended for a special use case: Cloudflare Workers, where any initialization logic must be completed on the first run and can't be put in the event queue.</p>
+<h2 id="more-advanced-options-for-hackers">More advanced options for hackers</h2>
+<h3 id="-run"><code>--run</code></h3>
+<p>Runs the output code using <code>node</code>. Ignored for browser targets.</p>
+<h3 id="-binaryen"><code>--binaryen</code></h3>
+<p>Use the binaryen backend for generating <code>.wasm</code> files. Also note that with the binaryen backend, we use the binaryen relooper instead of our own relooper, which at the moment may give better runtime performance.</p>
+<p>If you observe any different runtime behavior of output code when this option is on, it's a bug!</p>
+<h3 id="-debug"><code>--debug</code></h3>
+<p>Switch on the debug mode. Emits a ton of event logs suitable for piping to <code>grep</code> (or just leave it on the screen in case you'd like some hypnosis)</p>
+<h3 id="-full-sym-table"><code>--full-sym-table</code></h3>
+<p>Contain the full symbol table into <code>xx.lib.mjs</code>. Automatically implied by <code>--debug</code>.</p>
+<h3 id="-no-gc-sections"><code>--no-gc-sections</code></h3>
+<p>Do not run dead code elimination.</p>
+<h2 id="options-affecting-the-linker">Options affecting the linker</h2>
+<h3 id="-export-function-arg"><code>--export-function ARG</code></h3>
+<p>Use this when you <code>foreign export javascript</code> anything. Otherwise the dead code elimination performed by the linker will surely exclude that code from the output WebAssembly module if it's not transitively used by <code>Main.main</code>!</p>
+<h3 id="-extra-root-symbol-arg"><code>--extra-root-symbol ARG</code></h3>
+<p>Use this to specify a symbol to be added to the "root symbol set". Works similar to <code>--export-function</code>, but the argument is not a Haskell function name, but a symbol name directly.</p>
+<h2 id="additional-outputs-for-the-curious">Additional outputs for the curious</h2>
+<h3 id="-output-link-report"><code>--output-link-report</code></h3>
+<p>Output a "link report" text file containing internal linker stats.</p>
+<h3 id="-output-ir"><code>--output-ir</code></h3>
+<p>Output wasm IRs of compiled Haskell modules and the resulting module. The IRs aren't intended to be consumed by external tools like binaryen/wabt.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../jsffi/" class="btn btn-neutral float-right" title="JavaScript FFI">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../cabal/" class="btn btn-neutral" title="Cabal support"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/tweag/asterius/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../cabal/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../jsffi/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

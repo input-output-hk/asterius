@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Th - Asterius</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Th";
+    var mkdocs_page_input_path = "th.md";
+    var mkdocs_page_url = "/asterius/th/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Asterius</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../building/">Building guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cabal/">Cabal support</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ahc-link/">Using ahc-dist/ahc-link</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jsffi/">JavaScript FFI</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rts-api/">Invoking RTS API in JavaScript</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ir/">IR types and transformation passes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../debugging/">The runtime debugging feature</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../architecture/">Project architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-in-hs/">Writing WebAssembly code in Haskell</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../webassembly/">WebAssembly as a Haskell compilation target</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom-ghc/">About the custom GHC fork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-experimental/">Using experimental WebAssembly features</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../hacking/">Hacking guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../readings/">Reading list</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reports/">Status reports</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Asterius</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Th</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/tweag/asterius/edit/master/docs/th.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="template-haskell-implementation-in-asterius">Template Haskell implementation in asterius</h2>
+<h3 id="ahc"><code>ahc</code></h3>
+<p><code>ahc</code> is our <code>ghc</code> wrapper, and can be called directly or via Cabal to produce
+library archives and executables.</p>
+<h4 id="loading-the-frontend-plugin">Loading the frontend plugin</h4>
+<p>The entry point of <code>ahc</code> is <code>Language.Haskell.GHC.Toolkit.FakeGHC.fakeGHC</code>. It
+takes a <code>FrontendPlugin</code> and generates the <code>main</code> function of a <code>ghc</code> wrapper.
+When the wrapper is called with <code>--make</code>, it does its own command-line argument
+parsing, then the frontend plugin does the rest. Otherwise it just calls the
+real <code>ghc</code> with the same arguments.</p>
+<p><code>ghc</code> supports loading frontend plugins as a major mode, but we don't use that
+since it used to cause cryptic boot failures, when <code>ghc</code> confuses the frontend
+plugin's pkgdb with the wasm pkgdb.</p>
+<h4 id="the-frontend-plugin">The frontend plugin</h4>
+<p><code>Asterius.FrontendPlugin</code> contains the main <code>ahc</code> logic. We use a few hooks
+here, and the ones relevant to wasm compilation are:</p>
+<ul>
+<li><code>cmmToRawCmmHook</code>: We obtain raw Cmm as the starting point of wasm codegen.
+  This hook is only used for regular Haskell/Cmm sources, not splices.</li>
+<li><code>runPhaseHook</code>: We modify the pipeline for compiling a single source file.</li>
+<li><code>hscCompileCoreExprHook</code>: We modify the logic of "compiling the <code>CoreExpr</code> of
+  a single TH splice and returning its foreign ref".</li>
+</ul>
+<p>For TH splices, each splice's desugar output is sent to
+<code>hscCompileCoreExprHook</code>.</p>
+<h4 id="compiling-coreexpr-of-splices">Compiling <code>CoreExpr</code> of splices</h4>
+<p><code>Asterius.Iserv.CompileCoreExpr.compileCoreExpr</code> contains the logic of compiling
+splices to wasm. It generates a unique module/binder name, goes through the
+pipeline of Core/STG/Cmm/Wasm. In the end, we obtain a <code>AsteriusModule</code> which is
+the in-memory wasm object of the splice, and the object surely references back
+into the <code>template-haskell</code> package.</p>
+<p>When we have the wasm object, we send it to <code>ahc-iserv</code> via a <code>CreateBCOs</code>
+message (it's not really BCO though). <code>ahc-iserv</code> stores the object and returns
+an <code>HValueRef</code> which later can be used in a <code>RunTH</code> message.</p>
+<h3 id="ahc-iserv"><code>ahc-iserv</code></h3>
+<p><code>ahc-iserv</code> is the <code>iserv</code> process of asterius. It's managed by an <code>ahc</code>
+process.</p>
+<h4 id="handling-th-messages">Handling TH messages</h4>
+<p><code>Asterius.Iserv.Run.run</code> is the main entry of <code>ahc-iserv</code>, implementing handlers
+for a subset of TH messages.</p>
+<p><code>run</code> also takes a piece of <code>IservState</code> which is initialized when the
+<code>ahc-iserv</code> process is started.</p>
+<h4 id="iservstate"><code>IservState</code></h4>
+<p><code>IservState</code> is defined in <code>Asterius.Iserv.State</code> and contains two parts: one is
+the session state we communicate with <code>node</code>, the other is the modules loaded so
+far.</p>
+<p>The session state is <code>JSSession</code> in the <code>inline-js-core</code> package. It manages a
+<code>node</code> process, and we can send JavaScript code to <code>node</code>, evaluate it, exchange
+binary data, etc.</p>
+<p>The loaded modules come from 3 different TH messages:
+<code>LoadLibrary</code>/<code>LoadObj</code>/<code>CreateBCOs</code>. When receiving a <code>LoadLibrary</code>/<code>LoadObj</code>
+message, we read the archive/object file, deserialize it and store it in the
+state, no linking is performed yet. The objects are indexed by filepaths and
+thus can be removed upon <code>UnloadObj</code>, but archives are combined since there
+isn't <code>UnloadLibrary</code>.</p>
+<p><code>CreateBCOs</code> contains the serialized <code>AsteriusModule</code> for splices. It's also
+stored in the session state for later linking/executing.</p>
+<h4 id="linking-for-th">Linking for TH</h4>
+<p>When handling a <code>RunTH</code> message, the first thing we do is linking: starting from
+the splice's closure symbol indexed by the <code>HValueRef</code> returned earlier, we
+obtain a self-contained <code>AsteriusModule</code>. This linking process reuses the
+linking logic of regular Haskell main modules.</p>
+<p>Even when we have an <code>AsteriusModule</code>, we can't run it yet; the wasm files are
+always acompanied by some js modules, some copied and some generated. So we also
+generate the js modules.</p>
+<p>The logic of TH linking is in <code>Asterius.JSRun.NonMain</code>. It implements the logic
+of linking for "non-main" entries: we aren't linking for main modules and don't
+have <code>Main_main_closure</code>, but we can specify other symbols (e.g. TH splice
+closure, TH runner closure, etc), and those symbols along with their deps will
+end up in the linker output.</p>
+<h4 id="th-runner">TH runner</h4>
+<p>Besides the closures of splices, we also need TH runners which can run something
+like <code>Q Exp</code> and return the result in <code>IO</code>. Currently we have minimalistic TH
+runners in the <code>Asterius.GHCi</code> module in <code>ghci</code> boot lib. They are simple
+functions with a type signature like <code>Q Exp -&gt; IO JSArrayBuffer</code>.</p>
+<p>To use these TH runners, we also set the runner symbol (e.g.
+<code>ghci_AsteriusziGHCi_asteriusRunQExp_closure</code>) as a linker root symbol, then we
+use <code>rts_apply</code> to create a thunk which applies the runner to the splice. The
+thunk can then be forced to WHNF with <code>rts_evalIO</code>. The resulting
+<code>JSArrayBuffer</code> comes from the <code>ByteString</code> which is the result serialized via
+its <code>binary</code> instance. Then we can obtain the real underlying <code>ArrayBuffer</code> in
+JavaScript, and return it to the <code>iserv</code> process using <code>inline-js-core</code>.</p>
+<p>These runner functions always initiate a dummy TH state when running a splice.
+And all <code>Quasi</code> class methods (which calls <code>ghcCmd</code> to send queries back to the
+host <code>ghc</code> process) aren't implemented yet. Thus only trivial splices which
+don't call back into the host <code>ghc</code> are expected to work at the moment.</p>
+<h4 id="running-splices">Running splices</h4>
+<p>Now that all components related to TH are introduced, how the splices are run
+shall be obvious.</p>
+<p>Upon a <code>RunTH</code> message, <code>ahc-iserv</code> combines all loaded libraries/objects along
+with the splice and perform linking, producing a wasm binary file and some js
+files in a temporary directory. It then loads the wasm/js files into a <code>node</code>
+process, creates an asterius instance, call <code>hs_init()</code>, then create the closure
+and evaluate it, finally returning the serialized result.</p>
+<p>The running logic is <code>Asterius.Iserv.Run</code> and <code>Asterius.JSRun.NonMain</code>. An extra
+thing worth noting: we also have a <code>Asterius.JSRun.Main</code> which contains similar
+runners capable of loading wasm/js into <code>node</code> using <code>inline-js-core</code> and
+retrieving "standard output" back to Haskell. The "main" runners are proven to
+work.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/tweag/asterius/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

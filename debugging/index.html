@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>The runtime debugging feature - Asterius</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "The runtime debugging feature";
+    var mkdocs_page_input_path = "debugging.md";
+    var mkdocs_page_url = "/asterius/debugging/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Asterius</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../building/">Building guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cabal/">Cabal support</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ahc-link/">Using ahc-dist/ahc-link</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jsffi/">JavaScript FFI</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rts-api/">Invoking RTS API in JavaScript</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ir/">IR types and transformation passes</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">The runtime debugging feature</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#the-runtime-debugging-feature">The runtime debugging feature</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#virtual-address-spaces">Virtual address spaces</a></li>
+        
+            <li><a class="toctree-l3" href="#complete-list-of-emitted-debugging-log-entries">Complete list of emitted debugging log entries</a></li>
+        
+            <li><a class="toctree-l3" href="#dumping-irs">Dumping IRs</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../architecture/">Project architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-in-hs/">Writing WebAssembly code in Haskell</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../webassembly/">WebAssembly as a Haskell compilation target</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom-ghc/">About the custom GHC fork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-experimental/">Using experimental WebAssembly features</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../hacking/">Hacking guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../readings/">Reading list</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reports/">Status reports</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Asterius</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>The runtime debugging feature</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/tweag/asterius/edit/master/docs/debugging.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="the-runtime-debugging-feature">The runtime debugging feature</h1>
+<p>There is a runtime debugging mode which can be enabled by the <code>--debug</code> flag for <code>ahc-link</code>. When enabled, the compiler inserts "tracing" instructions in the following places:</p>
+<ul>
+<li>The start of a function/basic block</li>
+<li><code>SetLocal</code> when the local type is <code>I64</code></li>
+<li>Memory load/stores, when the value type is <code>I64</code></li>
+</ul>
+<p>The tracing messages are quite helpful in observing control flow transfers and memory operations. Remember to also use the <code>--output-link-report</code> flag to dump the linking report, which contains mapping from data/function symbols to addresses.</p>
+<p>The runtime debugging mode also enables a "memory trap" which intercepts every memory load/store instruction and checks if the address is null pointer or other uninitialized regions of the linear memory. The program immediately aborts if an invalid address is encountered. (When debugging mode is switched off, program continues execution and the rest of control flow is all undefined behavior!)</p>
+<h2 id="virtual-address-spaces">Virtual address spaces</h2>
+<p>Remember that we're compiling to <code>wasm32</code> which has a 32-bit address space, but the host GHC is actually 64-bits, so all pointers in asterius are 64-bits, and upon <code>load</code>/<code>store</code>/<code>call_indirect</code>, we truncate the 64-bit pointer, using only the lower 32-bits for indexing.</p>
+<p>The higher 32-bits of pointers are idle tag bits at our disposal, so, we implemented simple virtual address spaces. The linker/runtime is aware of the distinction between:</p>
+<ul>
+<li>The <em>physical</em> address, which is either an <code>i32</code> index of the linear memory for data, or an <code>i32</code> index of the table for functions.</li>
+<li>The <em>logical</em> address, which is the <code>i64</code> pointer value we're passing around.</li>
+</ul>
+<p>All access to the memory/table is achieved by using the <em>logical</em> address. The access operations are accompanied by a <em>mapping</em> operation which translates a <em>logical</em> address to a <em>physical</em> one. Currently it's just a truncate, but in the future we may get a more feature-complete <code>mmap</code>/<code>munmap</code> implementation, and some additional computation may occur when address translation is done.</p>
+<p>We chose two magic numbers (in <code>Asterius.Internals.MagicNumber</code>) as the tag bits for data/function pointers. The numbers are chosen so that when applied, the <em>logical</em> address does not exceed JavaScript's safe integer limit.</p>
+<p>When we emit debug log entries, we may encounter various <code>i64</code> values. We examine the higher 32-bits, and if it matches the pointer tag bits, we do a lookup in the data/function symbol table, and if there's a hit, we output the symbol along the value. This spares us the pain to keep a lot of symbol/address mappings in our working memory when examining the debug logs. Some false positives (e.g. some random intermediate <code>i64</code> value in a Haskell computation accidently collides with a <em>logical</em> address) may exist in theory, but the probability should be very low.</p>
+<p>Note that for consistency between vanilla/debug mode, the virtual address spaces are in effect even in vanilla mode. This won't add extra overhead, since the truncate instruction for 64-bit addresses has been present since the beginning.</p>
+<h2 id="complete-list-of-emitted-debugging-log-entries">Complete list of emitted debugging log entries</h2>
+<ul>
+<li>Assertions: some hand-written WebAssembly functions in <code>Asterius.Builtins</code> contain assertions which are only active in debugging mode. Failure of an assertion causes a string error message to be printed, and the whole execution flow aborted.</li>
+<li>Memory traps: In <code>Asterius.MemoryTrap</code>, we implement a rewriting pass which rewrites all load/store instructions into invocations of load/store wrapper functions. The wrapper functions are defined in <code>Asterius.Builtins</code>, which checks the address and traps if it's an invalid one (null pointer, uninitialized region, etc).</li>
+<li>Control-flow: In <code>Asterius.Tracing</code>, we implement a rewriting pass on functions (which are later invoked at link-time in <code>Asterius.Resolve</code>), which emits messages when:<ul>
+<li>Entering a Cmm function.</li>
+<li>Entering a basic block. To make sense of block ids, you need to dump pre-linking IRs (which isn't processed by the relooper yet, and preserves the control-flow graph structure)</li>
+<li>Assigning a value to an i64 local. To make sense of local ids, dump IRs. Also note that the local ids here doesn't match the actual local ids in wasm binary code (there is a re-mapping upon serialization), but it shouldn't be a problem since we are debugging the higher level IR here.</li>
+</ul>
+</li>
+</ul>
+<h2 id="dumping-irs">Dumping IRs</h2>
+<p>There are multiple ways to dump IRs:</p>
+<ul>
+<li>Via GHC flags: GHC flags like <code>-ddump-to-file -ddump-cmm-raw</code> dump pretty-printed GHC IRs to files.</li>
+<li>Via environment variable: Set the <code>ASTERIUS_DEBUG</code> environment variable, then during booting, a number of IRs (mainly raw Cmm in its AST form, instead of pretty-printed form) will be dumped.</li>
+<li>Via <code>ahc-link</code> flag: Use <code>ahc-link --output-ir</code> to dump IRs when compiling user code.</li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../architecture/" class="btn btn-neutral float-right" title="Project architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ir/" class="btn btn-neutral" title="IR types and transformation passes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/tweag/asterius/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../ir/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../architecture/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

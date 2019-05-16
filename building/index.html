@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Building guide - Asterius</title>
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Building guide";
+    var mkdocs_page_input_path = "building.md";
+    var mkdocs_page_url = "/asterius/building/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Asterius</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Building guide</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#building-guide">Building guide</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#using-a-pre-built-docker-image">Using a pre-built Docker image</a></li>
+        
+            <li><a class="toctree-l3" href="#building-custom-ghc">Building custom ghc</a></li>
+        
+            <li><a class="toctree-l3" href="#extra-dependencies">Extra dependencies</a></li>
+        
+            <li><a class="toctree-l3" href="#building-asterius">Building asterius</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../cabal/">Cabal support</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ahc-link/">Using ahc-dist/ahc-link</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../jsffi/">JavaScript FFI</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../rts-api/">Invoking RTS API in JavaScript</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../ir/">IR types and transformation passes</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../debugging/">The runtime debugging feature</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../architecture/">Project architecture</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-in-hs/">Writing WebAssembly code in Haskell</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../webassembly/">WebAssembly as a Haskell compilation target</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../custom-ghc/">About the custom GHC fork</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../wasm-experimental/">Using experimental WebAssembly features</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../hacking/">Hacking guide</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../readings/">Reading list</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../reports/">Status reports</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Asterius</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Building guide</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/tweag/asterius/edit/master/docs/building.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="building-guide">Building guide</h1>
+<p><code>asterius</code> is tested on Linux x64. Windows/macOS x64 may also work.</p>
+<p>A pre-built Docker image is provided for your convenience.</p>
+<h2 id="using-a-pre-built-docker-image">Using a pre-built Docker image</h2>
+<p>We build and test Docker images on CircleCI. They are pushed to <code>terrorjack/asterius</code>, the tags are git revisions. <code>terrorjack/asterius:latest</code> correspond to latest revision on <code>master</code>.</p>
+<p>Put input program in a directory (e.g. <code>~/mirror</code>), then map the directory to a Docker volume:</p>
+<pre><code>terrorjack@ubuntu:~$ docker run -it -v ~/mirror:/mirror terrorjack/asterius
+root@76bcb511663d:~# cd /mirror
+root@76bcb511663d:/mirror# ahc-link --help
+...
+</code></pre>
+
+<h2 id="building-custom-ghc">Building custom <code>ghc</code></h2>
+<p><code>asterius</code> requires a forked <code>ghc</code> which can be found <a href="https://github.com/TerrorJack/ghc/tree/asterius">here</a>. We are looking forward to building <code>asterius</code> with vanilla <code>ghc-head</code> in the long run, but at the moment, we use our own <code>ghc</code> fork so it's easy to test radical changes on <code>ghc</code> itself.</p>
+<p>The building guide of <code>ghc</code> can be found <a href="https://ghc.haskell.org/trac/ghc/wiki/Building">here</a>.</p>
+<p>On Linux/macOS, a prebuilt <code>ghc</code> tarball is provided. It's already included in <a href="https://github.com/tweag/asterius/blob/master/stack.yaml"><code>stack.yaml</code></a>. Note that the Windows bindist does not provide prof libs/haddock (due to AppVeyor build time restriction).</p>
+<h2 id="extra-dependencies">Extra dependencies</h2>
+<p>Besides the custom <code>ghc</code>, these dependencies are also required:</p>
+<ul>
+<li><code>cmake</code>/<code>make</code>/<code>g++</code>: For building in-tree <a href="https://github.com/WebAssembly/binaryen"><code>binaryen</code></a></li>
+<li><code>autoconf</code>: For booting <code>ghc-prim</code>/<code>base</code></li>
+<li><code>nodejs</code>: For running tests. Ensure the latest version is used, since we rely on some recent V8 experimental features (e.g. BigInt support)</li>
+<li><code>stack</code>: Someday <code>cabal</code> may also work, no specific obstacles anyway.</li>
+</ul>
+<h2 id="building-asterius">Building <code>asterius</code></h2>
+<p><code>stack build asterius</code>. That's it. Set <code>MAKEFLAGS=-j8</code> to pass flags to <code>make</code> for parallel building of <code>binaryen</code>.</p>
+<p>After the dust settles, run <code>stack exec ahc-boot</code> to perform booting. Set the <code>ASTERIUS_DEBUG</code> environment variable to make <code>ahc-boot</code> print IRs to text files which are useful when debugging compiled code of standard libraries. Be aware that this flag slows down the booting process significantly!</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../cabal/" class="btn btn-neutral float-right" title="Cabal support">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/tweag/asterius/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../cabal/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
