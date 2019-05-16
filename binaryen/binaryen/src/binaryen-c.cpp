@@ -3876,7 +3876,7 @@ BinaryenGetFunctionTypeBySignature(BinaryenModuleRef module,
   return NULL;
 }
 
-void BinaryenSetColosrEnabled(int enabled) { Colors::setEnabled(enabled); }
+void BinaryenSetColorsEnabled(int enabled) { Colors::setEnabled(enabled); }
 
 int BinaryenIsColorsEnabled() { return Colors::isEnabled(); }
 
