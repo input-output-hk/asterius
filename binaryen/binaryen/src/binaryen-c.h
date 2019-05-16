@@ -1246,6 +1246,11 @@ BinaryenGetFunctionTypeBySignature(BinaryenModuleRef module,
                                    BinaryenType* paramTypes,
                                    BinaryenIndex numParams);
 
+// Enable or disable coloring for the WASM printer
+void BinaryenSetColorsEnabled(int enabled);
+
+// Query whether color is enable for the WASM printer
+int BinaryenIsColorsEnabled();
 #ifdef __cplusplus
 } // extern "C"
 #endif

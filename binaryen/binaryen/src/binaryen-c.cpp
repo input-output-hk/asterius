@@ -3876,6 +3876,10 @@ BinaryenGetFunctionTypeBySignature(BinaryenModuleRef module,
   return NULL;
 }
 
+void BinaryenSetColosrEnabled(int enabled) { Colors::setEnabled(enabled); }
+
+int BinaryenIsColorsEnabled() { return Colors::isEnabled(); }
+
 #ifdef __EMSCRIPTEN__
 // Override atexit - we don't need any global ctors to actually run, and
 // otherwise we get clutter in the output in debug builds
