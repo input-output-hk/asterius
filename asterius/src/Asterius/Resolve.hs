@@ -86,7 +86,7 @@ mergeSymbols ::
   -> (AsteriusModule, LinkReport)
 mergeSymbols debug gc_sections store_mod root_syms
   | not gc_sections = (store_mod, final_rep {bundledFFIMarshalState = ffi_all})
-  | otherwise = (final_m, mempty {bundledFFIMarshalState = ffi_this})
+  | otherwise = (final_m, final_rep {bundledFFIMarshalState = ffi_this})
   where
     ffi_all = ffiMarshalState store_mod
     ffi_this =
