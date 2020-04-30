@@ -229,7 +229,16 @@ let
 
   asterius-boot = pkgs.runCommand "asterius-boot" {
       preferLocalBuild = true;
-      nativeBuildInputs = [ pkgs.makeWrapper pkgs.haskell-nix.compiler.${compilerName} pkgs.autoconf pkgs.automake ];
+      nativeBuildInputs = [
+        pkgs.makeWrapper
+        pkgs.haskell-nix.compiler.${compilerName}
+        pkgs.autoconf
+        pkgs.automake
+        (pkgs.haskell-nix.tool cabal {
+          version = "3.2.0.0";
+          ghc = pkgs.haskell-nix.compiler.${compilerName};
+        })
+      ];
     } ''
       mkdir -p $out/bin
       mkdir -p $out/boot
