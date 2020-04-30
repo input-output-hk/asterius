@@ -234,7 +234,7 @@ let
         pkgs.haskell-nix.compiler.${compilerName}
         pkgs.autoconf
         pkgs.automake
-        (pkgs.haskell-nix.tool cabal {
+        (pkgs.haskell-nix.tool "cabal" {
           version = "3.2.0.0";
           ghc = pkgs.haskell-nix.compiler.${compilerName};
         })
