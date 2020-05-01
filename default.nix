@@ -313,6 +313,8 @@ let
       buildInputs = [
         project.hsPkgs.hpack.components.exes.hpack
         pkgs.cmake
+        pkgs.autoconf
+        pkgs.automake
         nodejs
         nodePkgs.parcel-bundler
         nodePkgs.todomvc-app-css
@@ -333,6 +335,7 @@ let
         export inline_js_core_datadir=$(pwd)/inline-js/inline-js-core
         export wasm_toolkit_datadir=$(pwd)/wasm-toolkit
         export boot_libs_path=${ghc883.boot-libs}
+        export boot_obj_path=$(pwd)/object-files
         mkdir -p asterius-cabal-bin
         cd asterius-cabal-bin
         export asterius_bindir=$(pwd)
@@ -340,7 +343,7 @@ let
         ''
         + pkgs.lib.concatMapStrings (exe: ''
           ln -sf ../dist-newstyle/build/${cabalSystem}/ghc-8.8.3/asterius-0.0.1/x/${exe}/build/${exe}/${exe} ${exe}
-        '') ["ahc" "ahc-boot" "ahc-cabal" "ahc-dist" "ahc-ld" "ahc-link" "ahc-pkg"]
+        '') ["ahc" "ahc-boot" "ahc-cabal" "ahc-dist" "ahc-ld" "ahc-link" "ahc-pkg" "Setup-ghc-prim"]
         + ''
         cd ..
       '';

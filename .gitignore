@@ -24,3 +24,4 @@ package-lock.json
 *.wasm-toolkit.txt
 
 /test
+/object-files/
